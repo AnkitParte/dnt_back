@@ -12,8 +12,10 @@ const userRouter = require('./router/user.router')
 app.use(express.urlencoded({ extended: true }))
 app.use(express.json())
 app.use(cors())
+//base route to access all user api endpoints
 app.use('/user', userRouter)
 
+//basic route to check if api working or not
 app.get('/', (_, res) =>
   res.send({
     status: 200,
@@ -22,6 +24,7 @@ app.get('/', (_, res) =>
 )
 
 app.listen(PORT, async () => {
+  //making connection with DB
   await dbConnect(MONGO_URL)
   //   console.log('val->', val);
   console.log(`server is dancing on ${PORT}`)
